@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=3 uid="uid://cic5g3ghuac0a"]
+
+[ext_resource type="Shader" path="res://player/player.gdshader" id="1_cck2l"]
+[ext_resource type="Texture2D" uid="uid://bbwenulu3kjiq" path="res://player/player.png" id="1_pu00v"]
+[ext_resource type="Script" path="res://player/Player.cs" id="1_sdmqn"]
+
+[sub_resource type="Gradient" id="Gradient_0wqpd"]
+offsets = PackedFloat32Array(0.188525, 0.45082, 0.713115, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.513726, 0.113725, 0.0352941, 1, 0.633437, 0.122704, 0.0966459, 1, 0.827451, 0.137255, 0.196078, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uxakf"]
+gradient = SubResource("Gradient_0wqpd")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e65n8"]
+shader = ExtResource("1_cck2l")
+shader_parameter/oxygen = 1.0
+shader_parameter/danger = SubResource("GradientTexture2D_uxakf")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vuwk"]
+atlas = ExtResource("1_pu00v")
+region = Rect2(0, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2aab0"]
+atlas = ExtResource("1_pu00v")
+region = Rect2(24, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_osm7x"]
+atlas = ExtResource("1_pu00v")
+region = Rect2(48, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfd2g"]
+atlas = ExtResource("1_pu00v")
+region = Rect2(72, 0, 24, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jp5n5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vuwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2aab0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_osm7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfd2g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_grc7g"]
+size = Vector2(19, 10)
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_mask = 2
+script = ExtResource("1_sdmqn")
+_streamDirection = Vector2(1, 1)
+_streamForce = 0.2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_e65n8")
+position = Vector2(12, 10)
+sprite_frames = SubResource("SpriteFrames_jp5n5")
+autoplay = "default"
+frame_progress = 0.53889
+offset = Vector2(-12, -12)
+
+[node name="CountDownFire" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 26
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_grc7g")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-0.5, 2.38419e-07)
+scale = Vector2(0.95, 0.5)
+
+[node name="OxygenDe" type="Timer" parent="."]
+wait_time = 0.6
+autostart = true

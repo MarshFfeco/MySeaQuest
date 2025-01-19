@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d2a6sey1mmjvc"
+path="res://.godot/imported/Hordes and Hordes.wav-d9e8b858af067eb1e964f6f5192f5115.sample"
+
+[deps]
+
+source_file="res://Fuse-8-music-loops/Hordes and Hordes.wav"
+dest_files=["res://.godot/imported/Hordes and Hordes.wav-d9e8b858af067eb1e964f6f5192f5115.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

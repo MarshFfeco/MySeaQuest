@@ -1,0 +1,184 @@
+[gd_scene load_steps=16 format=3 uid="uid://dmad4cemfu7u6"]
+
+[ext_resource type="Script" path="res://user_interface/Points.cs" id="1_amufx"]
+[ext_resource type="Texture2D" uid="uid://bhigp2ut0lg6e" path="res://user_interface/people-count/person_empty_ui.png" id="1_cuwok"]
+[ext_resource type="Script" path="res://user_interface/Controle.cs" id="1_hmaqq"]
+[ext_resource type="FontFile" uid="uid://iarstn633fcw" path="res://gameplay/Gameplay.ttf" id="1_yphq7"]
+[ext_resource type="Shader" path="res://person/people.gdshader" id="4_s3q5c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uqsyk"]
+shader = ExtResource("4_s3q5c")
+shader_parameter/isFull = false
+shader_parameter/offset = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gh1rg"]
+shader = ExtResource("4_s3q5c")
+shader_parameter/isFull = false
+shader_parameter/offset = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7al3d"]
+shader = ExtResource("4_s3q5c")
+shader_parameter/isFull = false
+shader_parameter/offset = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nykll"]
+shader = ExtResource("4_s3q5c")
+shader_parameter/isFull = false
+shader_parameter/offset = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qb1nl"]
+shader = ExtResource("4_s3q5c")
+shader_parameter/isFull = false
+shader_parameter/offset = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cw6vg"]
+shader = ExtResource("4_s3q5c")
+shader_parameter/isFull = false
+shader_parameter/offset = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tc8fo"]
+shader = ExtResource("4_s3q5c")
+shader_parameter/isFull = false
+shader_parameter/offset = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dtlww"]
+shader = ExtResource("4_s3q5c")
+shader_parameter/isFull = false
+shader_parameter/offset = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_12syi"]
+shader = ExtResource("4_s3q5c")
+shader_parameter/isFull = false
+shader_parameter/offset = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sl1j3"]
+shader = ExtResource("4_s3q5c")
+shader_parameter/isFull = false
+shader_parameter/offset = 1.0
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 426.0
+offset_bottom = 25.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -11.5
+offset_right = 36.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_yphq7")
+text = "000000"
+vertical_alignment = 1
+script = ExtResource("1_amufx")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+offset_left = 321.0
+offset_right = 421.0
+offset_bottom = 25.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="Control" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+script = ExtResource("1_hmaqq")
+
+[node name="People1" type="Control" parent="MarginContainer/Control"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/Control/People1"]
+material = SubResource("ShaderMaterial_uqsyk")
+texture = ExtResource("1_cuwok")
+hframes = 2
+
+[node name="People2" type="Control" parent="MarginContainer/Control"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/Control/People2"]
+material = SubResource("ShaderMaterial_gh1rg")
+texture = ExtResource("1_cuwok")
+hframes = 2
+
+[node name="People3" type="Control" parent="MarginContainer/Control"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/Control/People3"]
+material = SubResource("ShaderMaterial_7al3d")
+texture = ExtResource("1_cuwok")
+hframes = 2
+
+[node name="People4" type="Control" parent="MarginContainer/Control"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/Control/People4"]
+material = SubResource("ShaderMaterial_nykll")
+texture = ExtResource("1_cuwok")
+hframes = 2
+
+[node name="People5" type="Control" parent="MarginContainer/Control"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/Control/People5"]
+material = SubResource("ShaderMaterial_qb1nl")
+texture = ExtResource("1_cuwok")
+hframes = 2
+
+[node name="People6" type="Control" parent="MarginContainer/Control"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/Control/People6"]
+material = SubResource("ShaderMaterial_cw6vg")
+texture = ExtResource("1_cuwok")
+hframes = 2
+
+[node name="People7" type="Control" parent="MarginContainer/Control"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/Control/People7"]
+material = SubResource("ShaderMaterial_tc8fo")
+texture = ExtResource("1_cuwok")
+hframes = 2
+
+[node name="People8" type="Control" parent="MarginContainer/Control"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/Control/People8"]
+material = SubResource("ShaderMaterial_dtlww")
+texture = ExtResource("1_cuwok")
+hframes = 2
+
+[node name="People9" type="Control" parent="MarginContainer/Control"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/Control/People9"]
+material = SubResource("ShaderMaterial_12syi")
+texture = ExtResource("1_cuwok")
+hframes = 2
+
+[node name="People10" type="Control" parent="MarginContainer/Control"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/Control/People10"]
+material = SubResource("ShaderMaterial_sl1j3")
+texture = ExtResource("1_cuwok")
+hframes = 2

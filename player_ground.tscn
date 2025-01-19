@@ -1,0 +1,377 @@
+[gd_scene load_steps=42 format=3 uid="uid://c11l0ngo1a4ss"]
+
+[ext_resource type="PackedScene" uid="uid://cic5g3ghuac0a" path="res://player/player.tscn" id="1_qgbk6"]
+[ext_resource type="Script" path="res://Camera2d.cs" id="1_w7rdf"]
+[ext_resource type="PackedScene" uid="uid://ddpwd8m2u7sk3" path="res://OxygenZone/oxygen_zone.tscn" id="2_3cg47"]
+[ext_resource type="Texture2D" uid="uid://bdiib27djyacm" path="res://scenes/environment/sand_bottom.png" id="3_4yfhx"]
+[ext_resource type="PackedScene" uid="uid://dmad4cemfu7u6" path="res://user_interface/control.tscn" id="3_88rcw"]
+[ext_resource type="PackedScene" uid="uid://ce52dx4fndrio" path="res://enemies/SpawnEnemy/spanw_enemy.tscn" id="3_u14gv"]
+[ext_resource type="Shader" path="res://Environment/PrettyWatter.gdshader" id="4_l2vx4"]
+[ext_resource type="Texture2D" uid="uid://5x28d5g55itq" path="res://user_interface/oxygen-bar/oxygen_bar_under.png" id="4_mni8y"]
+[ext_resource type="Texture2D" uid="uid://crftqhxletaoq" path="res://user_interface/oxygen-bar/oxygen_bar_progress.png" id="5_xcmht"]
+[ext_resource type="Script" path="res://user_interface/oxygen-bar/ProgressBar.cs" id="6_vf6wk"]
+[ext_resource type="Shader" path="res://user_interface/oxygen-bar/oxygenBar.gdshader" id="8_akntd"]
+[ext_resource type="FontFile" uid="uid://iarstn633fcw" path="res://gameplay/Gameplay.ttf" id="9_dybby"]
+[ext_resource type="Shader" path="res://teste.gdshader" id="11_4t1e1"]
+[ext_resource type="Script" path="res://GameOverScreen.cs" id="11_ior0h"]
+[ext_resource type="AudioStream" uid="uid://d2a6sey1mmjvc" path="res://Fuse-8-music-loops/Hordes and Hordes.wav" id="15_s1qua"]
+[ext_resource type="AudioStream" uid="uid://bdr4o13laxpdk" path="res://Fuse-8-music-loops/In the Before Times.wav" id="16_e8n25"]
+[ext_resource type="AudioStream" uid="uid://j1t3r2u0n5xi" path="res://Fuse-8-music-loops/Madness All Around Me.wav" id="17_2f5s5"]
+[ext_resource type="AudioStream" uid="uid://brijmewym444v" path="res://Fuse-8-music-loops/Pattlebaddle.wav" id="18_qnvno"]
+[ext_resource type="AudioStream" uid="uid://7oc5w03qo3vt" path="res://Fuse-8-music-loops/Pleasant Adventure.wav" id="19_filhi"]
+[ext_resource type="AudioStream" uid="uid://dysdyelrtksvo" path="res://Fuse-8-music-loops/The Circus Is Here.wav" id="20_vwq6i"]
+[ext_resource type="AudioStream" uid="uid://bsdbtog8gixbo" path="res://Fuse-8-music-loops/The Sand Level.wav" id="21_swujk"]
+[ext_resource type="AudioStream" uid="uid://dbfbyt318hxl0" path="res://Fuse-8-music-loops/To the Moon.wav" id="22_5faab"]
+[ext_resource type="Script" path="res://PlaylistService.cs" id="23_hy535"]
+
+[sub_resource type="Gradient" id="Gradient_6lysm"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.164557, 0.379747, 0.632911)
+colors = PackedColorArray(0.0156863, 0.333333, 0.74902, 1, 0.0156863, 0.462745, 0.85098, 1, 0.117647, 0.568627, 0.85098, 1, 0.368627, 0.784314, 0.94902, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_73gn8"]
+gradient = SubResource("Gradient_6lysm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cnuqq"]
+shader = ExtResource("4_l2vx4")
+shader_parameter/speed = 1.0
+shader_parameter/strength = 2.5
+shader_parameter/height = 2.0
+shader_parameter/useGradient = true
+shader_parameter/colors = SubResource("GradientTexture2D_73gn8")
+
+[sub_resource type="QuadMesh" id="QuadMesh_g06bb"]
+size = Vector2(500, 400)
+subdivide_width = 9
+subdivide_depth = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aclgv"]
+shader = ExtResource("4_l2vx4")
+shader_parameter/speed = 1.0
+shader_parameter/strength = 5.0
+shader_parameter/height = 1.2
+shader_parameter/useGradient = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_gml6g"]
+size = Vector2(500, 20)
+subdivide_width = 9
+subdivide_depth = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t665y"]
+shader = ExtResource("8_akntd")
+shader_parameter/strength = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p4k2d"]
+shader = ExtResource("8_akntd")
+shader_parameter/strength = 0.0
+
+[sub_resource type="Shader" id="Shader_4gal7"]
+code = "shader_type canvas_item;
+
+uniform float offset = 0.0;
+
+ void vertex() {
+	VERTEX += vec2(VERTEX.x, sin(TIME + offset) * 10.0);
+ }
+
+
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fwlop"]
+shader = SubResource("Shader_4gal7")
+shader_parameter/offset = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jwkye"]
+shader = ExtResource("11_4t1e1")
+shader_parameter/offset = 1.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ngqng"]
+shader = SubResource("Shader_4gal7")
+shader_parameter/offset = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qf05v"]
+shader = SubResource("Shader_4gal7")
+shader_parameter/offset = 2.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5g5c0"]
+shader = SubResource("Shader_4gal7")
+shader_parameter/offset = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mqgy4"]
+shader = SubResource("Shader_4gal7")
+shader_parameter/offset = 3.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kjge7"]
+shader = SubResource("Shader_4gal7")
+shader_parameter/offset = 4.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_noj5n"]
+shader = SubResource("Shader_4gal7")
+shader_parameter/offset = 4.5
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_wswij"]
+shuffle = true
+stream_count = 8
+stream_0 = ExtResource("15_s1qua")
+stream_1 = ExtResource("16_e8n25")
+stream_2 = ExtResource("17_2f5s5")
+stream_3 = ExtResource("18_qnvno")
+stream_4 = ExtResource("19_filhi")
+stream_5 = ExtResource("20_vwq6i")
+stream_6 = ExtResource("21_swujk")
+stream_7 = ExtResource("22_5faab")
+
+[node name="PlayerGround" type="Node"]
+
+[node name="GamePlay" type="Node" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="GamePlay"]
+position = Vector2(213, 140)
+process_callback = 0
+limit_bottom = 443
+limit_smoothed = true
+position_smoothing_enabled = true
+script = ExtResource("1_w7rdf")
+
+[node name="Environment" type="Node2D" parent="GamePlay"]
+
+[node name="MIDDLE" type="MeshInstance2D" parent="GamePlay/Environment"]
+material = SubResource("ShaderMaterial_cnuqq")
+position = Vector2(215, 244)
+mesh = SubResource("QuadMesh_g06bb")
+
+[node name="TOP" type="MeshInstance2D" parent="GamePlay/Environment"]
+modulate = Color(0.92549, 0.94902, 0.87451, 1)
+material = SubResource("ShaderMaterial_aclgv")
+position = Vector2(215, 47)
+mesh = SubResource("QuadMesh_gml6g")
+
+[node name="Sprite2D" type="Sprite2D" parent="GamePlay/Environment"]
+z_index = 10
+position = Vector2(215, 421)
+scale = Vector2(1.85185, 1)
+texture = ExtResource("3_4yfhx")
+
+[node name="Player" parent="GamePlay" instance=ExtResource("1_qgbk6")]
+position = Vector2(123, 70)
+_streamForce = 25.0
+
+[node name="OxygenZone" parent="GamePlay" instance=ExtResource("2_3cg47")]
+
+[node name="EnemySpawner" type="Node" parent="GamePlay"]
+
+[node name="SpanwEnemy" parent="GamePlay/EnemySpawner" instance=ExtResource("3_u14gv")]
+position = Vector2(-25, 0)
+_direction = Vector2(1, 0)
+
+[node name="A" parent="GamePlay/EnemySpawner/SpanwEnemy" index="1"]
+position = Vector2(15, 140)
+
+[node name="B" parent="GamePlay/EnemySpawner/SpanwEnemy" index="2"]
+position = Vector2(15, 410)
+
+[node name="SpanwEnemy2" parent="GamePlay/EnemySpawner" instance=ExtResource("3_u14gv")]
+position = Vector2(422, 0)
+_direction = Vector2(-1, 0)
+
+[node name="A" parent="GamePlay/EnemySpawner/SpanwEnemy2" index="1"]
+position = Vector2(15, 140)
+
+[node name="B" parent="GamePlay/EnemySpawner/SpanwEnemy2" index="2"]
+position = Vector2(15, 412)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" parent="CanvasLayer" instance=ExtResource("3_88rcw")]
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -30.0
+offset_right = 100.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_right = 6
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/MarginContainer2" groups=["UI"]]
+material = SubResource("ShaderMaterial_t665y")
+layout_mode = 2
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_right = 4
+texture_under = ExtResource("4_mni8y")
+texture_progress = ExtResource("5_xcmht")
+script = ExtResource("6_vf6wk")
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer2/TextureProgressBar"]
+material = SubResource("ShaderMaterial_p4k2d")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = 0.85
+offset_right = 94.0
+offset_bottom = 15.85
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("9_dybby")
+theme_override_font_sizes/font_size = 12
+text = "oxygen"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="GameOver" type="Control" parent="CanvasLayer"]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_ior0h")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.145098, 0.141176, 0.266667, 1)
+
+[node name="GameOverLabel" type="HBoxContainer" parent="CanvasLayer/GameOver"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -40.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/GameOver/GameOverLabel"]
+material = SubResource("ShaderMaterial_fwlop")
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("9_dybby")
+theme_override_font_sizes/font_size = 22
+text = "G"
+
+[node name="Label2" type="Label" parent="CanvasLayer/GameOver/GameOverLabel"]
+material = SubResource("ShaderMaterial_jwkye")
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_dybby")
+theme_override_font_sizes/font_size = 22
+text = "a "
+
+[node name="Label3" type="Label" parent="CanvasLayer/GameOver/GameOverLabel"]
+material = SubResource("ShaderMaterial_ngqng")
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_dybby")
+theme_override_font_sizes/font_size = 22
+text = "m "
+
+[node name="Label4" type="Label" parent="CanvasLayer/GameOver/GameOverLabel"]
+material = SubResource("ShaderMaterial_qf05v")
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_dybby")
+theme_override_font_sizes/font_size = 22
+text = "e"
+
+[node name="Label5" type="Label" parent="CanvasLayer/GameOver/GameOverLabel"]
+material = SubResource("ShaderMaterial_5g5c0")
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_dybby")
+theme_override_font_sizes/font_size = 22
+text = "O"
+
+[node name="Label6" type="Label" parent="CanvasLayer/GameOver/GameOverLabel"]
+material = SubResource("ShaderMaterial_mqgy4")
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_dybby")
+theme_override_font_sizes/font_size = 22
+text = "v"
+
+[node name="Label7" type="Label" parent="CanvasLayer/GameOver/GameOverLabel"]
+material = SubResource("ShaderMaterial_kjge7")
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_dybby")
+theme_override_font_sizes/font_size = 22
+text = "e"
+
+[node name="Label8" type="Label" parent="CanvasLayer/GameOver/GameOverLabel"]
+material = SubResource("ShaderMaterial_noj5n")
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_dybby")
+theme_override_font_sizes/font_size = 22
+text = "r"
+
+[node name="Scores" type="VBoxContainer" parent="CanvasLayer/GameOver"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 16.45
+offset_bottom = 50.45
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="BestScore" type="Label" parent="CanvasLayer/GameOver/Scores"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_dybby")
+text = "Best Score: 000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/GameOver/Scores"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_dybby")
+theme_override_font_sizes/font_size = 12
+text = "Score: 000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/GameOver"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -34.0
+offset_top = -53.34
+offset_right = 34.0
+offset_bottom = -26.34
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("9_dybby")
+text = "Start"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = SubResource("AudioStreamPlaylist_wswij")
+autoplay = true
+bus = &"Playlist"
+script = ExtResource("23_hy535")
+
+[editable path="GamePlay/EnemySpawner/SpanwEnemy"]
+[editable path="GamePlay/EnemySpawner/SpanwEnemy2"]

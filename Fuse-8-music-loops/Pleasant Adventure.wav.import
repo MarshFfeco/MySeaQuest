@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://7oc5w03qo3vt"
+path="res://.godot/imported/Pleasant Adventure.wav-af299febf9ca56363b2171eccce00c15.sample"
+
+[deps]
+
+source_file="res://Fuse-8-music-loops/Pleasant Adventure.wav"
+dest_files=["res://.godot/imported/Pleasant Adventure.wav-af299febf9ca56363b2171eccce00c15.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

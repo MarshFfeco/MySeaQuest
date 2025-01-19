@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://idcinnj4xary"]
+
+[ext_resource type="Texture2D" uid="uid://bb2dqfrjcka1" path="res://enemies/shark/shark_pieces.png" id="1_qrisi"]
+[ext_resource type="Script" path="res://particles/ObjectPiece.cs" id="2_2a3q1"]
+
+[node name="ObjectPiece" type="Sprite2D"]
+texture = ExtResource("1_qrisi")
+hframes = 2
+frame = 1
+script = ExtResource("2_2a3q1")
+_speed = 3.5
+_speedRotate = 7.0

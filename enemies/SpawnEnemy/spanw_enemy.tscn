@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce52dx4fndrio"]
+
+[ext_resource type="Script" path="res://enemies/SpawnEnemy/SpanwEnemy.cs" id="1_v2d0v"]
+
+[node name="SpanwEnemy" type="Node2D" node_paths=PackedStringArray("A", "B", "time", "peopleTime")]
+script = ExtResource("1_v2d0v")
+A = NodePath("A")
+B = NodePath("B")
+time = NodePath("Timer")
+peopleTime = NodePath("TimerPeople")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="A" type="Marker2D" parent="."]
+
+[node name="B" type="Marker2D" parent="."]
+
+[node name="TimerPeople" type="Timer" parent="."]
+wait_time = 3.0
